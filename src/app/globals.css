@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+  --background: #07111f;
+  --foreground: #f8fafc;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), serif;
+}
+
+a {
+  transition: color 150ms ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #64748b;
+}
+
+select,
+input,
+textarea,
+button {
+  font: inherit;
+}
