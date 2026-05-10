@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Activity, ArrowLeftRight, CheckCircle2, Clock3, Cpu, Download, Fan, Gauge, HardDriveDownload, Network, Shield, Timer } from "lucide-react";
 import type { CSSProperties } from "react";
 import type { AppDefinition } from "@/lib/apps";
@@ -26,17 +27,19 @@ export function DemoPreview({ app }: DemoPreviewProps) {
 
 function MetricsDemo() {
   return (
-    <div className="demo-body metrics-demo">
-      <div className="metric-ring">
-        <Gauge size={30} />
-        <strong>42%</strong>
-        <span>CPU</span>
-      </div>
-      <div className="mini-stack">
-        <div><Cpu size={16} /> Memory <strong>7.6 GB</strong></div>
-        <div><Fan size={16} /> Fan <strong>2,310 RPM</strong></div>
-        <div><Activity size={16} /> Thermal <strong>Nominal</strong></div>
-      </div>
+    <div className="demo-body">
+      <Image 
+        src="/app-screenshots/task-manager-pro.png" 
+        alt="Task Manager Pro Screenshot"
+        width={800}
+        height={600}
+        style={{ 
+          width: "100%", 
+          height: "100%", 
+          objectFit: "cover", 
+          borderRadius: "8px"
+        }} 
+      />
     </div>
   );
 }
