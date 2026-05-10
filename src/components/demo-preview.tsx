@@ -1,4 +1,5 @@
 import Image from "next/image";
+import taskManagerProImg from "../../public/app-screenshots/task-manager-pro.png";
 import { Activity, ArrowLeftRight, CheckCircle2, Clock3, Cpu, Download, Fan, Gauge, HardDriveDownload, Network, Shield, Timer } from "lucide-react";
 import type { CSSProperties } from "react";
 import type { AppDefinition } from "@/lib/apps";
@@ -29,10 +30,8 @@ function MetricsDemo() {
   return (
     <div className="demo-body">
       <Image 
-        src="/app-screenshots/task-manager-pro.png" 
+        src={taskManagerProImg} 
         alt="Task Manager Pro Screenshot"
-        width={800}
-        height={600}
         style={{ 
           width: "100%", 
           height: "100%", 
