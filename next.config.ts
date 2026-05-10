@@ -1,16 +1,19 @@
 import type { NextConfig } from "next";
-import path from "node:path";
+
+const isGithubPages = process.env.GITHUB_ACTIONS === "true";
+const repoName = "test-website";
 
 const nextConfig: NextConfig = {
+  output: "export",
   turbopack: {
-    root: path.resolve(__dirname),
+    root: process.cwd(),
   },
+  trailingSlash: true,
   images: {
-    remotePatterns: [
-      { protocol: "https", hostname: "images.unsplash.com" },
-      { protocol: "https", hostname: "placehold.co" },
-    ],
+    unoptimized: true,
   },
+  basePath: isGithubPages ? `/${repoName}` : "",
+  assetPrefix: isGithubPages ? `/${repoName}/` : "",
 };
 
 export default nextConfig;

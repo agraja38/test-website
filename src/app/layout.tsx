@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Manrope } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const heading = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" });
-const body = Manrope({ subsets: ["latin"], variable: "--font-body" });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
-  title: {
-    default: "LuxeCart | Custom Ecommerce Website",
-    template: "%s | LuxeCart",
+  title: "Agraja Apps",
+  description: "Download Agraja's desktop apps for macOS, Windows, and Linux.",
+  openGraph: {
+    title: "Agraja Apps",
+    description: "A public download hub for Task Manager Pro, FetchLater, justQuit, PiNetMonitor, and WinSwitch.",
+    type: "website",
   },
-  description: "A full custom ecommerce storefront and admin dashboard with PayHere integration for Sri Lanka.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${heading.variable} ${body.variable} bg-[#07111f] text-slate-50 antialiased`}>
-        {children}
-      </body>
+      <body className={`${inter.variable}`}>{children}</body>
     </html>
   );
 }
