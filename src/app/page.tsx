@@ -40,16 +40,11 @@ export default function Home() {
 
         <div className="hero-grid">
           <div className="hero-copy">
-            <span className="eyebrow">Public downloads for private-built desktop apps</span>
-            <h1>Install the latest Agraja apps from one live download hub.</h1>
-            <p>
-              Every download button reads from the public update feed, so the website follows new
-              releases automatically when the feed is updated.
-            </p>
+            <h1>Install the latest Agraja&apos;s apps</h1>
             <div className="hero-actions">
               <a className="cta" href="#apps">Browse apps</a>
               <a className="secondary-cta" href="https://raw.githubusercontent.com/agraja38/app-update-feeds/main/apps.json">
-                View live catalog
+                View catalog
               </a>
             </div>
           </div>
