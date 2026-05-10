@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { ArrowDown, Github, MonitorDown, Search } from "lucide-react";
 import { AppCard } from "@/components/app-card";
-import { appDefinitions, statCards, trustItems } from "@/lib/apps";
+import { appDefinitions, statCards } from "@/lib/apps";
 
 const platforms = ["All", "macOS", "Windows", "Linux"];
 
@@ -72,16 +72,6 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </section>
-
-      <section className="trust-band">
-        {trustItems.map(({ label, detail, Icon }) => (
-          <div key={label}>
-            <Icon size={22} />
-            <strong>{label}</strong>
-            <span>{detail}</span>
-          </div>
-        ))}
       </section>
 
       <section className="apps-section" id="apps">
