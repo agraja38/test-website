@@ -40,7 +40,7 @@ export default function Home() {
 
         <div className="hero-grid">
           <div className="hero-copy">
-            <h1>Install the latest Agraja&apos;s apps</h1>
+            <h1>Install the latest apps from Agraja</h1>
             <div className="hero-actions">
               <a className="cta" href="#apps">Browse apps</a>
               <a className="secondary-cta" href="https://raw.githubusercontent.com/agraja38/app-update-feeds/main/apps.json">
