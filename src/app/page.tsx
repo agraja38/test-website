@@ -107,8 +107,7 @@ export default function Home() {
       </section>
 
       <footer>
-        <span>Agraja Apps</span>
-        <a href="https://github.com/agraja38/app-update-feeds">Public update feed repository</a>
+        <span>&copy; Copyright Agraja 2026</span>
       </footer>
     </main>
   );
