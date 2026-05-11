@@ -109,7 +109,6 @@ export function normalizeFeed(slug: AppSlug, feed: GenericFeed, feedURL = ""): F
       releaseNotesURL,
       downloads: [
         ...(!isWindowsFeed && dmgURL ? [option("macOS installer", "macOS", dmgURL, undefined, undefined, true)] : []),
-        ...(!isWindowsFeed && zipURL ? [option("In-app update ZIP", "macOS", zipURL, undefined, asNumber(feed.sizeBytes))] : []),
         ...(isWindowsFeed && x64URL ? [option("Windows x64", "Windows", x64URL, "x64", asNumber(feed.sizeBytes), true)] : []),
         ...(isWindowsFeed && armURL ? [option("Windows ARM64", "Windows", armURL, "arm64")] : []),
       ],
