@@ -33,8 +33,9 @@ export function AppCard({ app, selectedPlatform }: AppCardProps) {
     )
       .then((feeds) => {
         if (!cancelled) {
+          const versions = Array.from(new Set(feeds.map((item) => item.version).filter(Boolean)));
           setFeed({
-            version: feeds.map((item) => item.version).filter(Boolean).join(" / "),
+            version: versions.join(" / "),
             notes: feeds.map((item) => item.notes).filter(Boolean).join(" "),
             releaseNotesURL: feeds.find((item) => item.releaseNotesURL)?.releaseNotesURL,
             downloads: feeds.flatMap((item) => item.downloads),
@@ -58,6 +59,9 @@ export function AppCard({ app, selectedPlatform }: AppCardProps) {
 
   const primary = downloads.find((item) => item.primary) ?? downloads[0];
   const Icon = app.Icon;
+  const versionText = feed.version
+    ? `v${feed.version.replace(/^v/i, "")}`
+    : "feed loaded";
 
   return (
     <article className="app-card" id={app.slug} style={{ "--accent": app.accent } as CSSProperties}>
@@ -77,7 +81,7 @@ export function AppCard({ app, selectedPlatform }: AppCardProps) {
 
         <div className="version-row">
           {status === "loading" && <><RefreshCw size={15} className="spin" /> Reading live feed</>}
-          {status === "ready" && <><span className="live-dot" /> Latest {feed.version ? `v${feed.version}` : "feed loaded"}</>}
+          {status === "ready" && <><span className="live-dot" /> Latest {versionText}</>}
           {status === "error" && <>Feed unavailable</>}
         </div>
 
