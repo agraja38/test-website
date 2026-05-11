@@ -18,7 +18,6 @@ export type AppSlug =
   | "fetchlater"
   | "pinetmonitor"
   | "justquit"
-  | "justquit-windows"
   | "winswitch";
 
 export type Platform = "macOS" | "Windows" | "Linux";
@@ -37,6 +36,7 @@ export type AppDefinition = {
   screenshot: "metrics" | "downloads" | "network" | "quit" | "windowsQuit" | "switch";
   highlights: string[];
   feedURL: string;
+  feedURLs?: string[];
 };
 
 const feedBase = "https://raw.githubusercontent.com/agraja38/app-update-feeds/main";
@@ -92,33 +92,18 @@ export const appDefinitions: AppDefinition[] = [
     slug: "justquit",
     repoName: "justQuit",
     displayName: "justQuit",
-    category: "macOS menu bar cleaner",
+    category: "Mac and Windows app cleaner",
     tagline: "Close regular apps fast while keeping protected apps and background helpers alone.",
     description:
-      "A native Mac menu bar app for quick app cleanup, protected app lists, countdowns, profiles, restore sessions, and update notifications.",
-    platforms: ["macOS"],
+      "A native app cleanup utility for macOS and Windows with protected app lists, restore sessions, and Pro features unlocked by license key.",
+    platforms: ["macOS", "Windows"],
     icon: "/app-icons/justquit.png",
     Icon: ShieldCheck,
     accent: "#ef4444",
     screenshot: "quit",
-    highlights: ["Protected apps", "Countdown and cancel", "Profiles and restore sessions"],
+    highlights: ["Protected apps", "Separate installers", "Pro countdowns and profiles"],
     feedURL: `${feedBase}/justquit/update.json`,
-  },
-  {
-    slug: "justquit-windows",
-    repoName: "justQuit-Windows",
-    displayName: "justQuit Windows",
-    category: "Windows tray utility",
-    tagline: "The justQuit workflow rebuilt for Windows with profiles, restore, and a global hotkey.",
-    description:
-      "A native Windows tray app for quitting selected apps, protecting important tools, saving profiles, and restoring the previous session.",
-    platforms: ["Windows"],
-    icon: "/app-icons/justquit-windows.png",
-    Icon: AppWindow,
-    accent: "#f97316",
-    screenshot: "windowsQuit",
-    highlights: ["Tray-first workflow", "Ctrl Alt J hotkey", "x64 and ARM64 installers"],
-    feedURL: `${feedBase}/justquit-windows/update.json`,
+    feedURLs: [`${feedBase}/justquit/update.json`, `${feedBase}/justquit-windows/update.json`],
   },
   {
     slug: "winswitch",
@@ -139,7 +124,7 @@ export const appDefinitions: AppDefinition[] = [
 ];
 
 export const statCards = [
-  { label: "Apps", value: "6", Icon: AppWindow },
+  { label: "Apps", value: "5", Icon: AppWindow },
   { label: "Platforms", value: "3", Icon: Cpu },
   { label: "Live feeds", value: "Auto", Icon: Activity },
   { label: "Public downloads", value: "Ready", Icon: Download },

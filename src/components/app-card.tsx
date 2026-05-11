@@ -19,14 +19,26 @@ export function AppCard({ app, selectedPlatform }: AppCardProps) {
 
   useEffect(() => {
     let cancelled = false;
-    fetch(`${app.feedURL}?v=${Date.now()}`, { cache: "no-store" })
-      .then((response) => {
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return response.json();
-      })
-      .then((data) => {
+    const feedURLs = app.feedURLs ?? [app.feedURL];
+
+    Promise.all(
+      feedURLs.map((feedURL) =>
+        fetch(`${feedURL}?v=${Date.now()}`, { cache: "no-store" })
+          .then((response) => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+          })
+          .then((data) => normalizeFeed(app.slug, data, feedURL))
+      )
+    )
+      .then((feeds) => {
         if (!cancelled) {
-          setFeed(normalizeFeed(app.slug, data));
+          setFeed({
+            version: feeds.map((item) => item.version).filter(Boolean).join(" / "),
+            notes: feeds.map((item) => item.notes).filter(Boolean).join(" "),
+            releaseNotesURL: feeds.find((item) => item.releaseNotesURL)?.releaseNotesURL,
+            downloads: feeds.flatMap((item) => item.downloads),
+          });
           setStatus("ready");
         }
       })
