@@ -7,7 +7,10 @@ type DemoPreviewProps = {
   app: AppDefinition;
 };
 
-const placeholderScreenshot = "/app-screenshots/dummy.svg";
+const placeholderScreenshot = (app: AppDefinition) =>
+  app.slug === "task-manager-pro"
+    ? taskManagerProImg
+    : `/app-screenshots/${app.slug}-placeholder.svg`;
 
 export function DemoPreview({ app }: DemoPreviewProps) {
   return (
@@ -17,34 +20,21 @@ export function DemoPreview({ app }: DemoPreviewProps) {
         <span />
         <span />
       </div>
-      {app.screenshot === "metrics" ? <MetricsDemo /> : <PlaceholderDemo />}
+      <ScreenshotDemo app={app} />
     </div>
   );
 }
 
-function MetricsDemo() {
-  return (
-    <div className="demo-body">
-      <Image 
-        src={taskManagerProImg} 
-        alt="Task Manager Pro Screenshot"
-        style={{ 
-          width: "100%", 
-          height: "100%", 
-          objectFit: "cover", 
-          borderRadius: "8px"
-        }} 
-      />
-    </div>
-  );
-}
-
-function PlaceholderDemo() {
+function ScreenshotDemo({ app }: { app: AppDefinition }) {
   return (
     <div className="demo-body">
       <Image
-        src={placeholderScreenshot}
-        alt="App screenshot placeholder"
+        src={placeholderScreenshot(app)}
+        alt={
+          app.slug === "task-manager-pro"
+            ? "Task Manager Pro Screenshot"
+            : `${app.displayName} screenshot placeholder`
+        }
         width={1280}
         height={720}
         style={{
