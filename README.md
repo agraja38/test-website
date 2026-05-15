@@ -8,7 +8,7 @@ The site reads live update manifests from:
 https://raw.githubusercontent.com/agraja38/app-update-feeds/main/apps.json
 ```
 
-Each app card fetches its own `update.json` from `app-update-feeds`, so download buttons update when the public feed is updated.
+Each app card fetches its own `update.json` from `app-update-feeds` at runtime with cache-busting enabled, so download buttons update when the public feed is updated. FetchLater releases update `fetchlater/update.json` automatically from the release workflow.
 
 ## Development
 

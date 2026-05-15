@@ -80,7 +80,9 @@ export function normalizeFeed(slug: AppSlug, feed: GenericFeed, feedURL = ""): F
             const platform = asString(row.platform) as Platform | undefined;
             const arch = asString(row.arch);
             if (!url || !platform) return null;
-            const isInstaller = Boolean(row.updateAsset) || url.endsWith(".dmg");
+            const normalizedUrl = url.split("?")[0].toLowerCase();
+            const isInstaller =
+              normalizedUrl.endsWith(".dmg") || normalizedUrl.endsWith(".exe");
             return option(
               `${platform}${arch ? ` ${arch}` : ""}`,
               platform,
